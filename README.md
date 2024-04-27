@@ -5,7 +5,9 @@
 
  Have fun !
 
- <img align="left" alt="GIF" src="https://media1.tenor.com/m/FkELNdTE-l8AAAAd/frieren-sip-frieren.gif" width="124,5px" margin="1px"/>
+--------------------
+
+ <img align="left" alt="GIF" src="https://media1.tenor.com/m/FkELNdTE-l8AAAAd/frieren-sip-frieren.gif" width="124px" margin="1px"/>
 
 *
 *
