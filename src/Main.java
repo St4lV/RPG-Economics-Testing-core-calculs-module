@@ -66,7 +66,7 @@ public class Main {
 
                     //Successful buy
                     } else if (CompteJoueur >= PrixAchat && Qact >= 0) {
-                        System.out.println("Successfully bought for " + PrixAchat + " bc");
+                        System.out.println("Successfully sold for " + PrixAchat + " bc");
                         CompteJoueur = CompteJoueur - (int) PrixAchat;
                         Qact = Qact - 1;
                         QJoueur = QJoueur + 1;
