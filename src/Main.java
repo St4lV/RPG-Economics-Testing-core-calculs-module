@@ -9,16 +9,18 @@ public class Main {
         //!! remind !! : 101010 is 10gc 10sc 10bc
 
         //has to be >1000 for better results
-        int PrixBase = 10000;
+        int PrixBase = 10500;
 
-        //default quantity available in market
-        int Qmax = 1280;
+        //Max quantity available in market
+        int Qmax = 512;
 
-        // RANGE : 1 - 100 ! default 40
-        int QstartRatio = 40;
+        // RANGE : 1 - 100 ! default 85 : Quantity Available in market at init
+        int QstartRatio = 85;
 
-        // value : positive integer >= 0
-        int CompteJoueur = 60000;
+        // value : positive integer >= 0 : Start money in test player account
+        int CompteJoueur = 169420;
+
+        // Quantity of items at init for test player
         int QJoueur = 15;
 
         //Initialisation of values:
@@ -34,19 +36,37 @@ public class Main {
             double PrixAchat = PrixAct + (int) (PrixAct * (100 - Qratio)/1000);
             double PrixVente = PrixAct - (int) (PrixAct * (100 - Qratio)/1000);
 
+            //Conversion from price Integers to in game display units
+
+                //Player
+            int gcJoueur = CompteJoueur / 10000;
+            int scJoueur = (CompteJoueur % 10000) / 100;
+            int bcJoueur = CompteJoueur % 100;
+
+            //MarketPrices
+            //Buy
+            int gcAchat = (int) PrixAchat / 10000;
+            int scAchat = (int) (PrixAchat % 10000) / 100;
+            int bcAchat = (int) PrixAchat % 100;
+            //Sell
+            int gcVente = (int) PrixVente / 10000;
+            int scVente = (int) (PrixVente % 10000) / 100;
+            int bcVente = (int) PrixVente % 100;
+
             //UI Terminal display :
             System.out.println("------------------------------------ ");
             System.out.println("Choose an action (buy/sell/exit): ");
             System.out.println("Quantity available: " + Qact + " Golden Apple");
-            System.out.println("Buy : " + PrixAchat + " bc");
-            System.out.println("Sell : " + PrixVente + " bc");
-            System.out.println("You currently have " + CompteJoueur + " bc");
+            System.out.println("Buy : " + gcAchat + "\u001B[93m\u233E\u001B[0m " + scAchat + "\u001B[37m\u233E\u001B[0m " + bcAchat + "\u001B[33m\u233E\u001B[0m ");
+            System.out.println("Sell : " + gcVente + "\u001B[93m\u233E\u001B[0m " + scVente + "\u001B[37m\u233E\u001B[0m " + bcVente + "\u001B[33m\u233E\u001B[0m ");
+            System.out.println("You currently have "+ gcJoueur + "\u001B[93m\u233E\u001B[0m " + scJoueur + "\u001B[37m\u233E\u001B[0m " + bcJoueur + "\u001B[33m\u233E\u001B[0m ");
             System.out.println("You currently have " + QJoueur + " Golden Apple");
 
             /* Testing intended values display, uncomment for more visibility when testing : */
             //System.out.println("Actual quantity ratio(Qratio) : " + Qratio);
-            //System.out.println("Actual rrice (PrixAct) : " + PrixAct + "bc");
-
+            //System.out.println("Actual price (PrixAct) : " + PrixAct + "bc");
+            //System.out.println("Buy price : " + PrixAchat);
+            //System.out.println("Sell price : " + PrixVente);
             //value prompt :
             String command = scanner.nextLine();
 
@@ -66,7 +86,7 @@ public class Main {
 
                     //Successful buy
                     } else if (CompteJoueur >= PrixAchat && Qact >= 0) {
-                        System.out.println("Successfully sold for " + PrixAchat + " bc");
+                        System.out.println("Successfully bought for " + gcAchat + "\u001B[93m\u233E\u001B[0m " + scAchat + "\u001B[37m\u233E\u001B[0m " + bcAchat + "\u001B[33m\u233E\u001B[0m ");
                         CompteJoueur = CompteJoueur - (int) PrixAchat;
                         Qact = Qact - 1;
                         QJoueur = QJoueur + 1;
@@ -90,9 +110,12 @@ public class Main {
                     } else if (QJoueur <= 0) {
                         System.out.println("Can't sell item : you are not in possession of this item.");
 
+                    } else if (PrixAct <= 5) {
+                        System.out.println("Can't sell item : price too low !"); // TEMP PROTECTION /!\ : price will not change whatever buy or sell is executed when prices too low, will have to fix this;
+
                     //Successful sell
                     } else if (QJoueur >= 0 && Qact <= Qmax) {
-                            System.out.println("Successfully bought for : " + PrixVente + " bc");
+                            System.out.println("Successfully sold for : " + gcVente + "\u001B[93m\u233E\u001B[0m " + scVente + "\u001B[37m\u233E\u001B[0m " + bcVente + "\u001B[33m\u233E\u001B[0m ");
 
                             CompteJoueur = CompteJoueur + (int) PrixVente;
                             Qact = Qact + 1;
