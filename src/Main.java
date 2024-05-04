@@ -33,9 +33,8 @@ public class Main {
         while (BourseLoop) {
 
             //differences between base, buy and sell values :
-            double PrixAchat = PrixAct + (int) (PrixAct * (100 - Qratio)/1000);
-            double PrixVente = PrixAct - (int) (PrixAct * (100 - Qratio)/1000);
-
+            double PrixAchat = PrixAct + (int) (PrixAct * (101 - Qratio) / 1000);
+            double PrixVente = PrixAct - (int) (PrixAct * (101 - Qratio) / 1000);
             //Conversion from price Integers to in game display units
 
                 //Player
@@ -62,11 +61,13 @@ public class Main {
             System.out.println("You currently have "+ gcJoueur + "\u001B[93m\u233E\u001B[0m " + scJoueur + "\u001B[37m\u233E\u001B[0m " + bcJoueur + "\u001B[33m\u233E\u001B[0m ");
             System.out.println("You currently have " + QJoueur + " Golden Apple");
 
-            /* Testing intended values display, uncomment for more visibility when testing : */
+            // Testing intended values display, uncomment for more visibility when testing :
+
             //System.out.println("Actual quantity ratio(Qratio) : " + Qratio);
             //System.out.println("Actual price (PrixAct) : " + PrixAct + "bc");
             //System.out.println("Buy price : " + PrixAchat);
             //System.out.println("Sell price : " + PrixVente);
+            
             //value prompt :
             String command = scanner.nextLine();
 
