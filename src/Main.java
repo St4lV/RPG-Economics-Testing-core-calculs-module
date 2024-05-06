@@ -7,7 +7,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         //!! remind !! : 101010 is 10gc 10sc 10bc
-
         //has to be >1000 for better results
         int PrixBase = 10500;
 
@@ -33,7 +32,7 @@ public class Main {
         while (BourseLoop) {
 
             //differences between base, buy and sell values :
-            double PrixAchat = PrixAct + (int) (PrixAct * (101 - Qratio) / 1000);
+            double PrixAchat = PrixAct + (int) (PrixAct * (101 - Qratio) / 500);
             double PrixVente = PrixAct - (int) (PrixAct * (101 - Qratio) / 1000);
             //Conversion from price Integers to in game display units
 
@@ -123,6 +122,7 @@ public class Main {
                             QJoueur = QJoueur - 1;
                             PrixAct = PrixAct - (PrixAct * (100 - Qratio) / Qmax);
                             Qratio = Qact * 100 / Qmax;
+
                         } else {
                             System.out.println("Can't sell item : error");
                         }
